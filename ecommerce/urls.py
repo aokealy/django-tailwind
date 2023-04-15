@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from core.views import index
+from core.views import frontpage
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', frontpage, name='frontpage'),
     path('admin/', admin.site.urls),
 ]
