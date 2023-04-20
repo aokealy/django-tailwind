@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect
 
@@ -23,8 +24,10 @@ def signup(request):
          form = SignUpForm()   
     return render(request, 'core/signup.html', {'form': form})
 
-def login_old(request):
-    return render(request, 'core/login.html')
+@login_required
+def myaccount(request):
+    return render(request, 'core/myaccount.html')
+
 
 def shop(request):
     categories = Category.objects.all()
