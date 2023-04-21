@@ -1,3 +1,4 @@
+from itertools import product
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -10,7 +11,8 @@ class Order(models.Model):
     STATUS_CHOICES = (
         (ORDERED, 'Ordered'),
         (SHIPPED, 'Shipped')
-    ) 
+    )
+
     user = models.ForeignKey(User, related_name='orders', blank=True, null=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -20,7 +22,7 @@ class Order(models.Model):
     place = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
 
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     paid = models.BooleanField(default=False)
     paid_amount = models.IntegerField(blank=True, null=True)
@@ -29,6 +31,6 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name='items', on_delete=models.CASCADE) 
-    price = models.IntegerField()  
-    qauntity = models.IntegerField(default=1) 
+    product = models.ForeignKey(Product, related_name='items', on_delete=models.CASCADE)
+    price = models.IntegerField()
+    quantity = models.IntegerField(default=1)
