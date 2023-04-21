@@ -1,3 +1,7 @@
+import json
+import stripe
+
+from django.conf import settings
 from django.shortcuts import render, redirect
 
 from cart.cart import Cart
@@ -6,6 +10,28 @@ from .models import Order, OrderItem
 
 def start_order(request):
     cart = Cart(request)
+    data = json.loads(request.body)
+    total_price = 0
+
+    items = []
+
+    for item in cart:
+        product = item['product']
+        total_price += product.price * int(item['quantity'])
+
+        obj = {
+            'price_data': {
+            'currency': 'usd',
+            'product_data': {
+               'name': product.name,
+            
+            },
+            'unit_amount': product.price,
+            },
+            'quantity': item['quantity']
+        }
+
+        items.append(obj)
 
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
