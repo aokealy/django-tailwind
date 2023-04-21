@@ -55,6 +55,6 @@ class Cart(object):
     
 
     def get_item(self, product_id):
-        return self.car[str(product_id)]
+        return self.cart[str(product_id)]
 
 
