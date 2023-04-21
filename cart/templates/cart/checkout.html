@@ -84,7 +84,6 @@
     function validateForm(data) {
         let errors = []
 
-
         if (data.first_name === '') {
             errors.push('First name is empty')
         }
@@ -94,27 +93,26 @@
         }
 
         if (data.email === '') {
-            errors.push('Email name is empty')
+            errors.push('Email is empty')
         }
 
         if (data.phone === '') {
-            errors.push('Phone name is empty')
-        }
-
-        if (data.zipcode === '') {
-            errors.push('Zipcode name is empty')
+            errors.push('Phone is empty')
         }
 
         if (data.address === '') {
-            errors.push('Address name is empty')
+            errors.push('Address is empty')
+        }
+
+        if (data.zipcode === '') {
+            errors.push('Zipcode is empty')
         }
 
         if (data.place === '') {
-            errors.push('Place name is empty')
+            errors.push('Place is empty')
         }
 
         return errors
-
     }
 
     function buy(event) {
@@ -131,16 +129,16 @@
         }
 
         let errors = validateForm(data)
-        
+
         if (errors.length) {
             console.log('Errors', errors)
         } else {
             var stripe = Stripe('{{ pub_key }}')
 
             fetch('/order/start_order/', {
-                method:'POST',
+                method: 'POST',
                 headers: {
-                    'Content-type': 'application/json'
+                    'Content-Type': 'application/json',
                     'X-CSRFToken': '{{ csrf_token }}'
                 },
                 credentials: 'same-origin',
@@ -159,9 +157,8 @@
             })
             .catch(function(error) {
                 console.log('Errors', error)
-            }) 
+            })
         }
-        
 
         return false
     }

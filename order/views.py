@@ -22,26 +22,24 @@ def start_order(request):
 
         obj = {
             'price_data': {
-            'currency': 'usd',
-            'product_data': {
-               'name': product.name,
-            
-            },
-            'unit_amount': product.price,
+                'currency': 'usd',
+                'product_data': {
+                    'name': product.name,
+                },
+                'unit_amount': product.price,
             },
             'quantity': item['quantity']
         }
 
         items.append(obj)
-
-
-    stripe_api_key = settings.STRIPE_API_KEY_HIDDEN 
+    
+    stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=items,
-        mode='payments',
-        sucess_url = 'http://127.0.0.1:8000/cart/success/',
-        cancel_url = 'http://127.0.0.1:8000/cart/'
+        mode='payment',
+        success_url='http://127.0.0.1:8000/cart/success/',
+        cancel_url='http://127.0.0.1:8000/cart/'
     )
     payment_intent = session.payment_intent
 
@@ -66,4 +64,4 @@ def start_order(request):
 
         item = OrderItem.objects.create(order=order, product=product, price=price, quantity=quantity)
 
-    return JsonResponse({'session':session, 'order': payment_intent})
+    return JsonResponse({'session': session, 'order': payment_intent})
