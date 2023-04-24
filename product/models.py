@@ -59,4 +59,7 @@ class Product(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
+    
+class review(models.Model):
+    product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)    
   
