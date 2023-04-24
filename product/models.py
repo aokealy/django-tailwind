@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.core.files import File
 
@@ -61,5 +62,9 @@ class Product(models.Model):
         return thumbnail
     
 class review(models.Model):
-    product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)    
+    product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE) 
+    rating = models.IntegerField(default=3)
+    content = models.TextField()
+    created_by = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE)
+    create_at = models.DateTimeField(auto_now_add=True)   
   
