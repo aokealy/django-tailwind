@@ -23,6 +23,45 @@
             Add To Cart
         </a>
     </div>
+
+    <div class="w-full mt-6">
+        <h2 class="text-xl">Reviews:</h2>
+
+        {% if request.user.is_authenticated %}
+        <form method="post" action="." class="mt-6 p-6 bg-gray-100 rounded-xl">
+            {% csrf_token %}
+
+            <div>
+                <label>Rating:</label><br>
+                <select name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Comment:</label><br>
+                <textarea name="content"></textarea>
+            </div>
+            <div>
+                <button>submit</button>
+            </div>
+
+        </form>
+        {% endif %}
+
+        {% for reviews in product.review.all %}
+        {% endfor %}
+
+    </div>
     
       
 
