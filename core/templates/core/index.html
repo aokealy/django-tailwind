@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="{% static 'main.min.css' %}" rel="stylesheet">
   <title>{% block title %} {% endblock %} | Pokemon Ecommerce</title>
+  {% block meta %}
+  <meta name="description" content="this is a pokemon website that sells pokemon products">
+  <meta name="author" content="Pokemon Ecommerce">
+  {% endblock %}
 </head>
 <body>
     <nav class="border-b border-gray-300">
