@@ -65,7 +65,7 @@
 
         {% for review in product.reviews.all %}
         <div class=" w-1/2 px-4 py-6 bg-gray-100 rounded-xl mb-4">
-            <strong>Rating:</strong>{{ review.rating }}/10<br>
+            <strong>Rating: </strong>{{ review.rating }}/10<br>
             <strong>Date:</strong> {{ review.created_at|date:"Y-m-d" }}<br>
             <strong>Comment:</strong><br>
             {{ review.content }}
