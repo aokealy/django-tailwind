@@ -65,12 +65,12 @@ class Product(models.Model):
         reviews_total = 0
 
         for review in self.reviews.all():
-           reviews_total += review.rating
-
-        if reviews_total < 0:
+            reviews_total += review.rating
+        
+        if reviews_total > 0:
             return reviews_total / self.reviews.count()
-
-        return 0  
+        
+        return 0
     
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
