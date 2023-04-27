@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-%p0mmj3%j6aind)@emd=9yudflbmyl0g$yykz+pdwy$v*gw^aw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pokemon-django-ecommerce.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['pokemon-django-ecommerce.herokuapp.com', '127.0.0.1']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
