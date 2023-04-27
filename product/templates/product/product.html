@@ -1,6 +1,13 @@
 {% extends 'core/index.html' %}
 {% block title %} {{ product.name }} {% endblock %}
 {% block content %}
+{% block meta %}
+  <meta name="description" content="{{ product.description }}">
+  <meta name="author" content="Pokemon Ecommerce">
+  <meta property="og:title" content="Pokemon Ecommerce | {{ product.name }}">
+  <meta property="og:description" content="this is a pokemon website that sells pokemon products">
+  <meta property="og:type" content="article">
+  {% endblock %}
 
 <div class="max-w-6xl mx-auto flex flex-wrap py-6 px-6 xl:px-0">
     <div class="images w-full mb-6 lg:mb-0 lg:w-3/5">
